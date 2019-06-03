@@ -1,11 +1,10 @@
 import React from 'react';
-import Node from '../../components/Node';
-import * as P from 'pretty-fast-pretty-printer';
-import * as Spec from '../../nodeSpec';
-import {ASTNode, pluralize, descDepth} from '../../ast';
+import {AST, Pretty as P, Node, NodeSpec as Spec} from '../../../node_modules/codemirror-blocks';
+
+const {pluralize, descDepth} = AST;
 
 
-export class LetLikeExpr extends ASTNode {
+export class LetLikeExpr extends AST.ASTNode {
   constructor(from, to, form, bindings, expr, options={}) {
     super(from, to, 'letLikeExpr', options);
     this.form = form;
@@ -39,7 +38,7 @@ export class LetLikeExpr extends ASTNode {
   }
 }
 
-export class WhenUnless extends ASTNode {
+export class WhenUnless extends AST.ASTNode {
   constructor(from, to, form, predicate, exprs, options={}) {
     super(from, to, 'whenUnlessExpr', options);
     this.form = form;

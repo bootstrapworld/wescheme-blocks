@@ -1,7 +1,7 @@
 /*eslint indent: "off"*/
 
-import {AST} from '../../ast';
-import {
+import {AST, Nodes, } from '../../../node_modules/codemirror-blocks';
+const {
   Blank,
   Literal,
   StructDefinition,
@@ -16,7 +16,7 @@ import {
   Sequence,
   FunctionApp,
   Unknown
-} from '../../nodes';
+} = Nodes;
 import {LetLikeExpr, WhenUnless} from './ast';
 import {PrimitiveGroup} from '../../parsers/primitives';
 import PRIMITIVES_CONFIG from './primitives-config';
