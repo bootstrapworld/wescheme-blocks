@@ -1,5 +1,5 @@
-import {Language} from '../../node_modules/codemirror-blocks';
-const {getLanguage} = Language;
+import {Languages} from '../../node_modules/codemirror-blocks';
+const {getLanguage} = Languages;
 
 export class Primitive {
   constructor(languageId, name, {argumentTypes, returnType}={}) {

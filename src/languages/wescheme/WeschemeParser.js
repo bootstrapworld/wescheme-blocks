@@ -925,7 +925,7 @@ class WeschemeParser {
 
     let ast = parseStar(lex(code));
     let rootNodes = ast.map(parseNode).filter(item => item !== null);
-    return new AST(rootNodes);
+    return new AST.AST(rootNodes);
   }
 
   getExceptionMessage(e){
