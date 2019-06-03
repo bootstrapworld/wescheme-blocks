@@ -1,12 +1,11 @@
-import CodeMirrorBlocks from '../src/CodeMirrorBlocks';
-import wescheme from '../src/languages/wescheme';
-import {store} from '../src/store';
+import WeSchemeBlocks from '../src/languages/wescheme';
+import {TeardownAfterTest} from '../node_modules/codemirror-blocks';
 import {
   click,
   keyDown,
   insertText
 } from './support/simulate';
-import {wait, cleanupAfterTest} from './support/test-utils';
+import {wait} from './support/test-utils';
 
 
 // ms delay to let the DOM catch up before testing
@@ -21,14 +20,14 @@ describe('The CodeMirrorBlocks Class', function() {
     `;
     document.body.insertAdjacentHTML('afterbegin', fixture);
     const container = document.getElementById('cmb-editor');
-    this.cmb = new CodeMirrorBlocks(container, {value: ""}, wescheme);
+    this.cmb = WeSchemeBlocks(container, {value: ""});
     this.blocks = this.cmb;
     this.cm = this.cmb;
     this.blocks.setBlockMode(true);
   });
 
   afterEach(function() {
-    cleanupAfterTest('root', store);
+    TeardownAfterTest();
   });
 
   describe('focusing,', function() {

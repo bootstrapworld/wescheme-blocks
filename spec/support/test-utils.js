@@ -1,4 +1,4 @@
-import CodeMirrorBlocks from '../../src/CodeMirrorBlocks';
+import WeSchemeBlocks from '../../src/languages/wescheme';
 
 export async function wait(ms) {
   return new Promise(resolve => {
@@ -12,16 +12,6 @@ export function removeEventListeners() {
   oldElem.parentNode.replaceChild(newElem, oldElem);
 }
 
-export function cleanupAfterTest(rootId, store) {
-  document.body.removeChild(document.getElementById('root'));
-  store.dispatch({type: "RESET_STORE_FOR_TESTING"});
-  const textareas = document.getElementsByTagName("textarea");
-  while (textareas[0]) {
-    const current = textareas[0];
-    current.parentNode.removeChild(current);
-  }
-}
-
 const fixture = `
   <div id="root">
     <div id="cmb-editor" class="editor-container"/>
@@ -32,10 +22,10 @@ const fixture = `
  * or `call` (`activationSetup.call(this, pyret)`)
  * so that `this` is scoped correctly!
  */
-export function activationSetup(language) {
+export function activationSetup() {
   document.body.insertAdjacentHTML('afterbegin', fixture);
   const container = document.getElementById('cmb-editor');
-  this.cmb = new CodeMirrorBlocks(container, { collapseAll: false, value: "" }, language);
+  this.cmb = WeSchemeBlocks(container, { collapseAll: false, value: "" });
   this.cmb.setBlockMode(true);
 
   this.activeNode = () => this.cmb.getFocusedNode();
@@ -52,7 +42,7 @@ export function activationSetup(language) {
 export function cmSetup(language) {
   document.body.insertAdjacentHTML('afterbegin', fixture);
   const container = document.getElementById('cmb-editor');
-  this.cmb = new CodeMirrorBlocks(container, { collapseAll: false, value: "" }, language);
+  this.cmb = WeSchemeBlocks(container, { collapseAll: false, value: "" });
   this.editor = this.cmb;
   this.cm = this.editor;
   this.blocks = this.cmb;

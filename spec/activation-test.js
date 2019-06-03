@@ -1,6 +1,6 @@
 import wescheme from '../src/languages/wescheme';
+import {TeardownAfterTest} from '../node_modules/codemirror-blocks';
 import 'codemirror/addon/search/searchcursor.js';
-import { store } from '../src/store';
 import { wait, cleanupAfterTest, activationSetup } from './support/test-utils';
 import {
   click,
@@ -13,7 +13,7 @@ const DELAY = 250;
 
 // be sure to call with `apply` or `call`
 let setup = function () { activationSetup.call(this, wescheme); };
-let teardown = function () { cleanupAfterTest('root', store); };
+let teardown = function (cmb) { TeardownAfterTest(); };
 
 describe("when dealing with node activation,", function () {
   beforeEach(function () {
@@ -25,7 +25,7 @@ describe("when dealing with node activation,", function () {
     this.literal2 = ast.rootNodes[1];
   });
 
-  afterEach(function () { teardown(); });
+  afterEach(function () { teardown(this.cmb); });
 
   it('should only allow one node to be active at a time', async function () {
     click(this.literal1);
@@ -145,7 +145,7 @@ describe('cut/copy/paste', function () {
     this.literal2 = ast.rootNodes[1];
   });
 
-  afterEach(function () { teardown(); });
+  afterEach(function () { teardown(this.cmb); });
 
   it('should remove selected nodes on cut', async function () {
     click(this.literal1);
@@ -193,7 +193,7 @@ describe('tree navigation', function () {
     this.lastNode   = this.thirdRoot.args[1].args[1];
   });
 
-  afterEach(function () { teardown(); });
+  afterEach(function () { teardown(this.cmb); });
 
   it('up-arrow should navigate to the previous visible node, but not beyond the tree', async function () {
     click(this.firstRoot);
@@ -358,7 +358,7 @@ describe("when dealing with node selection, ", function () {
     this.expr = ast.rootNodes[2];
   });
 
-  afterEach(function () { teardown(); });
+  afterEach(function () { teardown(this.cmb); });
 
   it('space key toggles selection on and off', async function () {
     click(this.literal1);

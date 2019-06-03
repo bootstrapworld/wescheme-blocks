@@ -1,5 +1,6 @@
-import {Primitive, PrimitiveGroup} from 'codemirror-blocks/parsers/primitives';
-import {addLanguage, removeLanguage} from 'codemirror-blocks/languages';
+import {Primitive, PrimitiveGroup} from '../../src/parsers/primitives';
+import {Languages} from '../../node_modules/codemirror-blocks';
+const {addLanguage, removeLanguage} = Languages;
 
 describe('The primitives module', function() {
   beforeEach(function() {
