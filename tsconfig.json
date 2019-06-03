@@ -12,6 +12,6 @@
         "allowSyntheticDefaultImports": true
     },
     "include": [
-        "src/languages/pyret/*"
+        // "src/languages/pyret/*"
     ]
 }
