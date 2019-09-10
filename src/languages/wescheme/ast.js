@@ -1,7 +1,8 @@
 import React from 'react';
-import {AST, Pretty as P, Node, NodeSpec as Spec} from '../../../node_modules/codemirror-blocks';
+import {AST, Pretty as P, Node, NodeSpec as Spec} from 'codemirror-blocks';
 
 const {pluralize, descDepth} = AST;
+
 
 
 export class LetLikeExpr extends AST.ASTNode {
@@ -18,8 +19,7 @@ export class LetLikeExpr extends AST.ASTNode {
     Spec.required('expr')
   ])
 
-  toDescription(level){
-    if((this.level - level) >= descDepth) return this.options['aria-label'];
+  longDescription(_level) {
     return `a ${this.form} expression with ${pluralize("binding", this.bindings.exprs)}`;
   }
 
@@ -43,6 +43,7 @@ export class WhenUnless extends AST.ASTNode {
     super(from, to, 'whenUnlessExpr', options);
     this.form = form;
     this.predicate = predicate;
+    console.log('predicate is', predicate);
     this.exprs = exprs;
   }
 
@@ -52,9 +53,8 @@ export class WhenUnless extends AST.ASTNode {
     Spec.required('exprs')
   ])
 
-  toDescription(level){
-    if((this.level - level) >= descDepth) return this.options['aria-label'];
-    return `a ${this.form} expression: ${this.form} ${this.predicate.toDescription(level)}, ${this.exprs.toDescription(level)}`;
+  longDescription(level) {
+    return `a ${this.form} expression: ${this.form} ${this.predicate.describe(level)}, ${this.exprs.describe(level)}`;
   }
 
   pretty() {

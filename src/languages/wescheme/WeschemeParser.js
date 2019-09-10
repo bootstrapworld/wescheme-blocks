@@ -1,6 +1,6 @@
 /*eslint indent: "off"*/
 
-import {AST, Nodes, } from '../../../node_modules/codemirror-blocks';
+import {AST, Nodes, } from 'codemirror-blocks';
 const {
   Blank,
   Literal,
@@ -18,8 +18,8 @@ const {
   Unknown
 } = Nodes;
 import {LetLikeExpr, WhenUnless} from './ast';
-import {PrimitiveGroup} from '../../parsers/primitives';
-import PRIMITIVES_CONFIG from './primitives-config';
+//import {PrimitiveGroup} from '../../parsers/primitives';
+//import PRIMITIVES_CONFIG from './primitives-config';
 
 try {
   var lex = require('wescheme-js/src/lex').lex;
@@ -350,9 +350,9 @@ class WeschemeParser {
     );
   }
 
-  get primitives() {
-    return PrimitiveGroup.fromConfig('wescheme', PRIMITIVES_CONFIG);
-  }
+//  get primitives() {
+//    return PrimitiveGroup.fromConfig('wescheme', PRIMITIVES_CONFIG);
+//  }
 
   lex(code) {
     return lex(code);

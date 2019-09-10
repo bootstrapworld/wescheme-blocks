@@ -1,6 +1,6 @@
 {
   "name": "wescheme-blocks",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "WeScheme blocks language",
   "main": "src/languages/wescheme/index.js",
   "engines": {
@@ -12,7 +12,7 @@
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "codemirror": "5.46.0",
-    "codemirror-blocks": "git://github.com/bootstrapworld/codemirror-blocks.git#merge-pyret-quarantine",
+    "codemirror-blocks": "0.7.8",
     "diff": "^4.0.1",
     "event-emitter": "^0.3.5",
     "icss-utils": "^4.1.1",
@@ -64,7 +64,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
-    "eslint-loader": "^2.2.1",
+    "eslint-loader": "2.2.1",
     "eslint-plugin-react": "^7.14.3",
     "express": "^4.17.1",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
