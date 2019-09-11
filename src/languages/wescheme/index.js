@@ -1,8 +1,8 @@
 import WeschemeParser from './WeschemeParser';
-import CodeMirrorBlocks  from "codemirror-blocks";
+import { CodeMirrorBlocks, Languages }  from "codemirror-blocks";
 require('./style.less');
 
-export const language = {
+export const WeScheme = Languages.addLanguage({
   id: 'wescheme',
   name: 'WeScheme',
   description: 'The WeScheme language',
@@ -15,9 +15,9 @@ export const language = {
       lockNodesOfType: ['comment']
     };
   },
-};
+});
 
-const constructor = (container, options) => new CodeMirrorBlocks(container, options, language);
+const constructor = (container, options) => new CodeMirrorBlocks(container, options, WeScheme);
 export default constructor;
 
 module.exports = constructor;

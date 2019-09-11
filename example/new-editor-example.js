@@ -14,4 +14,3 @@ const editor = WeSchemeCMB(container, {collapseAll: false, value: exampleCode});
 
 // for debugging purposes
 window.editor = editor
-console.log(editor);
