@@ -21,9 +21,9 @@ import {LetLikeExpr, WhenUnless} from './ast';
 import PRIMITIVES_CONFIG from './primitives-config';
 
 try {
-  var lex = require('wescheme-js/src/lex').lex;
-  var types = require('wescheme-js/src/runtime/types');
-  var structures = require('wescheme-js/src/structures');
+  var lex = require('./borrowedFromWeSchemeCompiler/lex').lex;
+  var types = require('./borrowedFromWeSchemeCompiler/types');
+  var structures = require('./borrowedFromWeSchemeCompiler/structures');
 }  catch (e) {
   console.error('wescheme-js, which is required to use the wescheme blocks parser, does not appear to be installed.', e);
 }
