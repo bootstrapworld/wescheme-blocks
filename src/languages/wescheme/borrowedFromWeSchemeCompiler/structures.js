@@ -448,24 +448,6 @@ export class unsupportedExpr extends Program {
   toString() { return this.val.toString() }
 }
 
-
-export function isExpression(node){
-  return !(   (node instanceof defVar)
-    || (node instanceof defVars)
-    || (node instanceof defStruct)
-    || (node instanceof defFunc)
-    || (node instanceof provideStatement)
-    || (node instanceof unsupportedExpr)
-    || (node instanceof requireExpr));
-}
-
-export function isDefinition(node){
-  return (node instanceof defVar)
-  || (node instanceof defVars)
-  || (node instanceof defStruct)
-  || (node instanceof defFunc);
-}
-
 export var keywords = ["cond", "else", "let", "case", "let*", "letrec", "quote",
   "quasiquote", "unquote","unquote-splicing","local","begin",
   "if","or","and","when","unless","lambda","λ","define",

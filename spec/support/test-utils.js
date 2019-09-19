@@ -39,7 +39,7 @@ export function activationSetup() {
  * or `call` (`cmSetup.call(this, pyret)`)
  * so that `this` is scoped correctly!
  */
-export function cmSetup(language) {
+export function cmSetup(_) {
   document.body.insertAdjacentHTML('afterbegin', fixture);
   const container = document.getElementById('cmb-editor');
   this.cmb = WeSchemeBlocks(container, { collapseAll: false, value: "" });

@@ -1,7 +1,7 @@
 import React from 'react';
 import {AST, Pretty as P, Node, NodeSpec as Spec} from 'codemirror-blocks';
 
-const {pluralize, descDepth} = AST;
+const {pluralize} = AST;
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "wescheme-blocks",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "WeScheme blocks language",
   "main": "src/languages/wescheme/index.js",
   "engines": {
@@ -8,9 +8,9 @@
     "npm": ">=3.x"
   },
   "dependencies": {
-    "codemirror-blocks": "0.7.9",
-    "react-dom": "16.9.0",
-    "react": "16.9.0"
+    "codemirror-blocks": "0.8.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",

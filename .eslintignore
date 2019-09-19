@@ -1,2 +1,2 @@
 lib/
-src/languages/pyret/pyret-lang/*
+src/languages/wescheme/borrowedFromWeSchemeCompiler/*
