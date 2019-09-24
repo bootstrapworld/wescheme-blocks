@@ -2,20 +2,11 @@ var _ = require('lodash');
 var path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 
 var baseConfig = require('./base.config.js')();
 
 // this is the config for generating the files needed to run the examples.
 module.exports = function(env, argv) {
-  // Display bundle size when building for production
-  if(argv['mode'] == 'production') { 
-    baseConfig.plugins.push(new BundleAnalyzerPlugin({
-      analyzerMode: 'static', 
-      openAnalyzer: !('TRAVIS' in process.env && 'CI' in process.env)
-    }));
-  }
 
   return _.extend({}, baseConfig, {
     devtool: 'cheap-module-source-map',
