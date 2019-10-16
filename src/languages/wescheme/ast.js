@@ -1,9 +1,5 @@
-import React from 'react';
-import {AST, Pretty as P, Node, NodeSpec as Spec} from 'codemirror-blocks';
-
+import {React, AST, Pretty as P, Node, NodeSpec as Spec} from 'codemirror-blocks';
 const {pluralize} = AST;
-
-
 
 export class LetLikeExpr extends AST.ASTNode {
   constructor(from, to, form, bindings, expr, options={}) {

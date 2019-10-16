@@ -1,4 +1,5 @@
 var path = require("path");
+var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = function(config) {
@@ -20,7 +21,15 @@ module.exports = function(config) {
     rules.push({test: /\.less$/, use:["style-loader","css-loader","less-loader"]});
   }
   return {
-    resolve : {extensions: ['.ts', '.tsx', '.js', '.jsx'] }, // Order matters!
+    resolve : {
+      alias: {
+        jsnums :  'wescheme-js/src/runtime/js-numbers',
+        lex :     'wescheme-js/src/lex',
+        types :   'wescheme-js/src/runtime/types',
+        structs : 'wescheme-js/src/structures',
+      },
+      extensions: ['.ts', '.tsx', '.js', '.jsx']  // Order matters!
+    },
     output: {
       path: path.resolve(__dirname, '..', "build"),
       filename: "[name].js"
@@ -31,7 +40,7 @@ module.exports = function(config) {
         include: [
           path.resolve(__dirname, '..', 'example'),
           path.resolve(__dirname, '..', 'src'),
-          path.resolve(__dirname, '..', 'spec')
+          path.resolve(__dirname, '..', 'spec'),
         ],
         use: "ts-loader",
       },{
@@ -39,11 +48,8 @@ module.exports = function(config) {
         include: [
           path.resolve(__dirname, '..', 'example'),
           path.resolve(__dirname, '..', 'src'),
+          path.resolve(__dirname, '..', 'spec'),
           path.resolve(__dirname, '..', 'node_modules', 'wescheme-js', 'src'),
-          path.resolve(__dirname, '..', 'spec')
-        ],
-        exclude: [
-          path.resolve(__dirname, '..', 'node_modules', 'wescheme-js', 'src', 'runtime', 'js-numbers.js')
         ],
         enforce: "pre",
         loader: "babel-loader?cacheDirectory=true",

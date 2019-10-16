@@ -14,9 +14,18 @@ var configs = [
       filename: "[name].js",
       library: ["CodeMirrorBlocks"]
     },
-    plugins: [new webpack.ProvidePlugin({ codemirror: "codemirror" })],
+    plugins: [
+      new webpack.ProvidePlugin({ codemirror: "codemirror" }),
+      new webpack.ProvidePlugin({ jsnums: "jsnums" }),
+      new webpack.ProvidePlugin({ structs: "structs" }),
+      new webpack.ProvidePlugin({ structs: "lex" }),
+    ],
     externals: {
       'codemirror': 'CodeMirror',
+      'jsnums': 'jsnums',
+      'lex': 'plt.compiler',
+      'types': 'types',
+      'structs': 'plt.compiler',
     }
   })
 ];

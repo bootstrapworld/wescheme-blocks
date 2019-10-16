@@ -21,6 +21,10 @@ if (envConfig.runCoverage) {
 module.exports = _.extend({}, baseConfig, {
   resolve: {
     alias: {
+      jsnums :  'wescheme-js/src/runtime/js-numbers',
+      lex :     'wescheme-js/src/lex',
+      types :   'wescheme-js/src/runtime/types',
+      structs : 'wescheme-js/src/structures',
       'codemirror-blocks': 'CodeMirror-Blocks'
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx'],

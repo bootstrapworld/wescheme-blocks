@@ -19,14 +19,9 @@ const {
 } = Nodes;
 import {LetLikeExpr, WhenUnless} from './ast';
 import PRIMITIVES_CONFIG from './primitives-config';
-
-try {
-  var lex = require('./borrowedFromWeSchemeCompiler/lex').lex;
-  var types = require('./borrowedFromWeSchemeCompiler/types');
-  var structures = require('./borrowedFromWeSchemeCompiler/structures');
-}  catch (e) {
-  console.error('wescheme-js, which is required to use the wescheme blocks parser, does not appear to be installed.', e);
-}
+import { lex } from 'lex';
+import {isString, isChar, isVector as isNativeVector, TRUE, FALSE} from 'types';
+import * as structures from 'structs'
 
 let symbolMap = new Map();
 symbolMap.set("*", "multiply");
@@ -272,14 +267,14 @@ function parseNode(node, i) {
     }
   } else if (node instanceof structures.literal) {
     let dataType = typeof node.val, aria = node.toString(), value = node.toString();
-    if (types.isString(node.val)) {
+    if (isString(node.val)) {
       dataType = "string";
       aria = `${node.val}, a String`;
       value = '"' + node.val + '"'; // use the raw value, plus the quotes (for unicode symbols)
-    } else if (types.isChar(node.val)) {
+    } else if (isChar(node.val)) {
       dataType = "character";
       aria = `${node.val.val}, a Character`;
-    } else if (node.val === types.FALSE || node.val === types.TRUE) {
+    } else if (node.val === FALSE || node.val === TRUE) {
       dataType = "boolean";
       aria = `${node.val}, a Boolean`;
     } else if (node.val.isRational && node.val.isRational()){
@@ -312,6 +307,7 @@ function parseNode(node, i) {
     if(node.val.constructor !== Array) return null;
     let unknown = new Unknown(from, to, node.val.map(parseNode).filter(item => item !== null),
       {msg: node.errorMsg, 'aria-label': 'invalid expression', 'comment': comment});
+    console.log(unknown);
     return unknown;
   } else if (node instanceof structures.requireExpr) {
     return new FunctionApp(from, to, parseNode(node.stx), [parseNode(node.spec)],
@@ -367,8 +363,8 @@ class WeschemeParser {
     }
 
     //////////////////////////////////// UTILITY FUNCTIONS //////////////////////////////
-    function isVector(x)      { return types.isVector(x.val); }
-    function isString(x)      { return types.isString(x.val); }
+    function isVector(x)      { return isNativeVector(x.val); }
+    function isString(x)      { return isString(x.val); }
     function isSymbol(x)      { return x instanceof structures.symbolExpr; }
     function isLiteral(x)     { return x instanceof structures.literal; }
     function isUnsupported(x) { return x instanceof structures.unsupportedExpr; }
