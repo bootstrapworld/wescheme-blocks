@@ -1,5 +1,6 @@
 import CodeMirrorBlocks from '../../src/languages/wescheme';
 import { store } from '../../src/store';
+import { cleanup } from "@testing-library/react";
 
 export async function wait(ms) {
   return new Promise(resolve => {
@@ -31,6 +32,7 @@ export function cleanupAfterTest(rootId, store) {
 
 export function teardown() {
   cleanupAfterTest('root', store);
+  cleanup();
 }
 
 const fixture = `
@@ -47,7 +49,7 @@ export function activationSetup(language) {
   document.body.insertAdjacentHTML('afterbegin', fixture);
   const container = document.getElementById('cmb-editor');
   const cmOptions = {historyEventDelay: 100} // since our test harness is faster than people
-  this.cmb = new CodeMirrorBlocks(
+  this.cmb = CodeMirrorBlocks(
     container, 
     { collapseAll: false, value: "", incrementalRendering: false }, 
     language, 

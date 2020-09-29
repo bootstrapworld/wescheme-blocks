@@ -27,6 +27,7 @@
     "@babel/template": "7.7.4",
     "@babel/traverse": "7.7.4",
     "@babel/types": "7.7.4",
+    "@testing-library/react": "^11.0.4",
     "@types/react": "16.9.16",
     "@types/react-dom": "16.9.4",
     "babel-eslint": "10.0.3",
@@ -94,7 +95,8 @@
     "Justin Pombrio",
     "Sorawee Porncharoenwase",
     "Emmanuel Schanzer",
-    "Preston Tunnell Wilson"
+    "Preston Tunnell Wilson",
+    "Dorai Sitaram"
   ],
   "license": "MIT License"
 }
