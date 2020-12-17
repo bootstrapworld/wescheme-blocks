@@ -1,8 +1,7 @@
-var path = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-var baseConfig = require('./base.config.js')();
+const baseConfig = require('./base.config.js')();
 
 // this is the config for generating the files needed to run the examples.
 module.exports = function(env, argv) {
@@ -28,23 +27,15 @@ module.exports = function(env, argv) {
       new webpack.IgnorePlugin(/analyzer|compiler|modules\.js/, /node_modules/)
     ]),
     optimization: {
-      minimize: argv['mode'] == 'production',
-      splitChunks: {
-        cacheGroups: {
-          commons: {
-            name: 'commons',
-            chunks: 'all',
-            minChunks: 2,
-            enforce: true
-          }
-        }
-      }
+      minimize: false,
+      splitChunks: false
     },
     devServer: {
       hot: true,
       inline: true,
       progress: true,
+      headers: { 'Access-Control-Allow-Origin': '*' },
       contentBase: path.join(__dirname, '..', 'example')
-    }
+    },
   });
 }

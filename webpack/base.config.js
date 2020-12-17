@@ -1,14 +1,17 @@
-var path = require("path");
+const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const envConfig = require('../env-config.js');
 
 module.exports = function(config) {
   config = config || {};
   var plugins = [];
   var rules = [
-    {test:/.png$|.jpg$|.jpeg$|.gif$|.svg$|.wav$/, use: "url-loader?limit=10000"},
-    {test:/.woff$|.woff2$/, use: "url-loader?limit=10000"},
+    {
+      test:/.woff$|.woff2.png$|.jpg$|.jpeg$|.gif$|.svg$|.wav$/, 
+      use: { loader: "url-loader", options: { limit: 10000 } }
+    },
     {test:/.ttf$|.eot$/, use: "file-loader"},
-    {test:/\.css$/, use: ["style-loader", "css-loader"] },
+    {test:/\.css$/, use: [{loader:"style-loader"},{loader:"css-loader"}] },
   ];
   if (config.extractCSS) {
     plugins.push(new MiniCssExtractPlugin({ filename: '[name].[chunkhash].css' }),);
@@ -17,7 +20,10 @@ module.exports = function(config) {
       use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"]
     });
   } else {
-    rules.push({test: /\.less$/, use:["style-loader","css-loader","less-loader"]});
+    rules.push({
+      test: /\.less$/, 
+      use:[{loader:"style-loader"},{loader:"css-loader"},{loader:"less-loader"}]
+    });
   }
   return {
     resolve : {
@@ -51,14 +57,15 @@ module.exports = function(config) {
           path.resolve(__dirname, '..', 'node_modules', 'wescheme-js', 'src'),
         ],
         enforce: "pre",
-        loader: "babel-loader?cacheDirectory=true",
+        use: {
+          loader: "babel-loader",
+          options: {cacheDirectory: true},
+        }
       },
       {
         test: /\.css$/,
-        include: [
-          path.resolve(__dirname, '..', 'spec')
-        ],
-        loaders: ['style-loader', 'css-loader']
+        include: [path.resolve(__dirname, '..', 'spec')],
+        use: [{loader: 'style-loader'}, {loader: 'css-loader'}]
       }])
     },
     plugins: plugins,

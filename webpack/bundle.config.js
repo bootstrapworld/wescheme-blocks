@@ -1,7 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
-var baseConfig = require('./base.config.js');
+const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const baseConfig = require('./base.config.js');
 
 // this is the config for a single js file that can be included with a script tag
 var configs = [
@@ -12,7 +11,7 @@ var configs = [
     output: {
       path: path.resolve(__dirname, '..', "dist"),
       filename: "[name].js",
-      library: ["CodeMirrorBlocks"],
+      libraryTarget: 'commonjs',
     },
     plugins: [
       new BundleAnalyzerPlugin({
@@ -31,7 +30,10 @@ var configs = [
       'lex': 'plt.compiler',
       'types': 'types',
       'structs': 'plt.compiler',
-    }
+    },
+    optimization: {
+      minimize: true,
+    },
   })
 ];
 

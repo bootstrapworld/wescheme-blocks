@@ -61,6 +61,9 @@
     "webpack-dev-server": "^3.11.0",
     "wescheme-js": "git+https://github.com/bootstrapworld/wescheme-js.git"
   },
+  "peerDependencies": {
+    "codemirror": "^5.58.2"
+  },
   "scripts": {
     "prepublishOnly": "npm run build",
     "test": "./node_modules/karma/bin/karma start --single-run",

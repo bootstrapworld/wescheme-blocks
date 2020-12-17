@@ -2,17 +2,36 @@
 // Generated on Mon Nov 30 2015 13:06:12 GMT-0800 (PST)
 var webpackConfig = require('./webpack/test.config.js');
 var envConfig = require('./env-config.js');
-var reporters = ['jasmine-diff', 'dots'];
 
-/*
+// Configure frameworks and plugins:
+// available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+var frameworks = ['jasmine'];
+var plugins = [
+  'karma-sourcemap-loader',
+  'karma-jasmine',
+  'karma-chrome-launcher',
+  'karma-webpack',
+  'karma-coveralls'
+];
+
+// If we're not on Travis, add parallelism
+if (!envConfig.isCI) {
+  frameworks.unshift('parallel');
+  plugins.unshift('karma-parallel');
+}
+
+// Configure reporters:
+// if we're doing coverage, add the coverage reporter
+// if we're on Travis, add the coveralls reporter, too
+var reporters = ['dots'];
 if (envConfig.runCoverage) {
   reporters.push('coverage');
-
+  plugins.unshift( 'karma-coverage')
   if (envConfig.isCI) {
     reporters.push('coveralls');
   }
 }
-*/
+
 module.exports = function(config) {
   config.set({
 
@@ -21,7 +40,16 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['parallel', 'jasmine', 'karma-typescript'],
+    frameworks: frameworks,
+    plugins: plugins,
+    reporters: reporters,
+    coverageReporter: {
+      dir: '.coverage',
+      reporters: [
+        { type: 'html' },
+        { type: 'lcovonly' }
+      ]
+    },
 
     parallelOptions: {
       executors: envConfig.isCI ? 1 : undefined, // undefined: defaults to cpu-count - 1
@@ -37,13 +65,7 @@ module.exports = function(config) {
     },
 
     // list of files / patterns to load in the browser
-    files: [
-      'spec/index.js',
-    ],
-
-    // list of files to exclude
-    exclude: [
-    ],
+    files: ['spec/index.js'],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -66,21 +88,10 @@ module.exports = function(config) {
         timeoutInterval: 30000
       }
     },
-    // reporters: ["karma-typescript"],
-/*
-    reporters: reporters,
-    coverageReporter: {
-      dir: '.coverage',
-      reporters: [
-        { type: 'html' },
-        { type: 'lcovonly' }
-      ]
-    },
-*/
+
     jasmineDiffReporter: {
       pretty: true,
     },
-
 
     // web server port
     port: 9876,
@@ -90,7 +101,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_ERROR,
+    logLevel: config.LOG_WARN,
 
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -101,9 +112,11 @@ module.exports = function(config) {
     customLaunchers: {
       ChromeTravisCI: {
         base: 'Chrome',
-        flags: ['--no-sandbox']
+        flags: ['--no-sandbox', '--no-proxy-server', '--remote-debugging-port=9222']
       }
     },
+
+    exclude: ["/**/*ast*.ts"],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
