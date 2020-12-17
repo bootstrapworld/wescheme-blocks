@@ -1,5 +1,4 @@
-import ReactTestUtils from 'react-dom/test-utils';
-let Simulate = ReactTestUtils.Simulate;
+import { fireEvent } from "@testing-library/react";
 
 // These exported functions simulate browser events for testing.
 // They use React's test utilities whenever possible.
@@ -12,14 +11,80 @@ let Simulate = ReactTestUtils.Simulate;
 // - `props` sets other properties on the event (whatever you like).
 
 export function click(node) {
-  Simulate.click(toElement(node));
+  fireEvent.click(toElement(node));
+}
+export function mouseDown(node) {
+  fireEvent.mouseDown(toElement(node));
 }
 export function doubleClick(node) {
-  Simulate.doubleClick(toElement(node));
+  fireEvent.doubleClick(toElement(node));
 }
 export function blur(node=document.activeElement) {
-  Simulate.blur(toElement(node));
+  fireEvent.blur(toElement(node));
 }
+
+function createBubbledEvent(type, props = {}) {
+  const event = new Event(type, { bubbles: true });
+  Object.assign(event, props);
+  return event;
+}
+
+function createBubbledMouseEvent(type, props = {}) {
+  const event = new MouseEvent(type, { bubbles: true });
+  Object.assign(event, props);
+  return event;
+}
+
+export function drop(dataTransfer) {
+  let ans = createBubbledEvent('drop');
+  return ans;
+}
+
+export function dragstart() {
+  let ans = createBubbledEvent('dragstart');
+  return ans;
+}
+
+export function dragover(node=document.activeElement) {
+  toElement(node).dispatchEvent(createBubbledEvent('dragover'));
+}
+
+export function dragenterObsolete(node=document.activeElement) {
+  toElement(node).dispatchEvent(createBubbledEvent('mouseenter'));
+  toElement(node).dispatchEvent(createBubbledEvent('dragenter'));
+  toElement(node).dispatchEvent(createBubbledEvent('mouseover'));
+}
+
+export function mouseenter() {
+  return createBubbledEvent('mouseenter');
+}
+
+export function dragenter() {
+  return createBubbledEvent('dragenter');
+}
+
+export function mouseover() {
+  return createBubbledEvent('mouseover');
+}
+
+export function dragenterSeq(node=document.activeElement) {
+  //toElement(node).dispatchEvent(mouseenter());
+  toElement(node).dispatchEvent(dragenter());
+  toElement(node).dispatchEvent(mouseover());
+}
+
+export function dragleave() {
+  return createBubbledEvent('dragleave');
+}
+
+export function mouseleave() {
+  return createBubbledEvent('mouseleave');
+}
+
+export function dragend() {
+  return createBubbledEvent('dragend');
+}
+
 // TODO: document.activeElement isn't always a good default to dispatch to.
 // What does the _browser_ dispatch to?
 export function keyDown(key, props={}, node=document.activeElement) {
@@ -30,14 +95,14 @@ export function keyDown(key, props={}, node=document.activeElement) {
     Object.assign(event, props);
     node.dispatchEvent(event);
   } else {
-    Simulate.keyDown(toElement(node), makeKeyEvent(key, props));
+    fireEvent.keyDown(toElement(node), makeKeyEvent(key, props));
   }
 }
 export function keyPress(key, props={}, node=document.activeElement) {
-  Simulate.keyPress(toElement(node), makeKeyEvent(key, props));
+  fireEvent.keyPress(toElement(node), makeKeyEvent(key, props));
 }
 export function insertText(text) {
-  // TODO: can this be done via Simulate?
+  // TODO: can this be done via fireEvent?
   document.execCommand('insertText', false, text);
 }
 
@@ -91,6 +156,7 @@ function getKeyCode(key) {
   case "/": return 191;
   case "<": return 188;
   // If you extend this, make sure to match the official table linked above.
+  default: throw new Error("Unknown key: " + key);
   }
 }
 

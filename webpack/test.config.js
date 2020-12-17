@@ -25,7 +25,7 @@ module.exports = _.extend({}, baseConfig, {
       lex :     'wescheme-js/src/lex',
       types :   'wescheme-js/src/runtime/types',
       structs : 'wescheme-js/src/structures',
-      'codemirror-blocks': 'CodeMirror-Blocks'
+      'codemirror-blocks': 'codemirror-blocks'
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },

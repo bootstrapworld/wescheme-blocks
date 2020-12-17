@@ -2,13 +2,12 @@ var _ = require('lodash');
 var path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var baseConfig = require('./base.config.js')();
 
 // this is the config for generating the files needed to run the examples.
 module.exports = function(env, argv) {
-
+  
   return _.extend({}, baseConfig, {
     devtool: 'cheap-module-source-map',
     entry: {
@@ -27,6 +26,7 @@ module.exports = function(env, argv) {
         inject: 'body',
         chunks: ['commons','new-editor-example'],
       }),
+      new webpack.IgnorePlugin(/analyzer|compiler|modules\.js/, /node_modules/)
     ]),
     optimization: {
       minimize: argv['mode'] == 'production',

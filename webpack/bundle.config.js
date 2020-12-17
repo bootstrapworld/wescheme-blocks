@@ -2,6 +2,7 @@ var _ = require('lodash');
 var path = require('path');
 var webpack = require('webpack');
 var baseConfig = require('./base.config.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // this is the config for a single js file that can be included with a script tag
 var configs = [
@@ -12,16 +13,21 @@ var configs = [
     output: {
       path: path.resolve(__dirname, '..', "dist"),
       filename: "[name].js",
-      library: ["CodeMirrorBlocks"]
+      library: ["CodeMirrorBlocks"],
     },
     plugins: [
-      new webpack.ProvidePlugin({ codemirror: "codemirror" }),
-      new webpack.ProvidePlugin({ jsnums: "jsnums" }),
-      new webpack.ProvidePlugin({ structs: "structs" }),
-      new webpack.ProvidePlugin({ structs: "lex" }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static', 
+        openAnalyzer: !('TRAVIS' in process.env && 'CI' in process.env),
+        reportFilename: "bundle-sizes.html",
+        generateStatsFile: true,
+        openAnalyzer: false,
+      }),
     ],
     externals: {
-      'codemirror': 'CodeMirror',
+      'codemirror': 'codemirror',
+      'codemirror/addon/search/search' : 'codemirror',
+      'codemirror/addon/search/searchcursor' : 'codemirror',
       'jsnums': 'jsnums',
       'lex': 'plt.compiler',
       'types': 'types',

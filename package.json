@@ -8,7 +8,7 @@
     "npm": ">=3.x"
   },
   "dependencies": {
-    "codemirror-blocks": "0.8.4"
+    "codemirror-blocks": "https://github.com/bootstrapworld/codemirror-blocks#notest"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -27,6 +27,7 @@
     "@babel/template": "7.7.4",
     "@babel/traverse": "7.7.4",
     "@babel/types": "7.7.4",
+    "@testing-library/react": "^11.0.4",
     "@types/react": "16.9.16",
     "@types/react-dom": "16.9.4",
     "babel-eslint": "10.0.3",
@@ -68,10 +69,10 @@
     "typescript": "3.7.3",
     "url-loader": "3.0.0",
     "webpack": "4.41.3",
-    "webpack-bundle-analyzer": "3.6.0",
+    "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "^3.11.0",
-    "wescheme-js": "0.0.3"
+    "wescheme-js": "https://github.com/bootstrapworld/wescheme-js"
   },
   "scripts": {
     "prepublishOnly": "npm run build",
@@ -94,7 +95,8 @@
     "Justin Pombrio",
     "Sorawee Porncharoenwase",
     "Emmanuel Schanzer",
-    "Preston Tunnell Wilson"
+    "Preston Tunnell Wilson",
+    "Dorai Sitaram"
   ],
   "license": "MIT License"
 }
