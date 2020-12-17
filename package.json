@@ -8,10 +8,10 @@
     "npm": ">=3.x"
   },
   "dependencies": {
-    "codemirror-blocks": "git+https://github.com/bootstrapworld/codemirror-blocks.git#notest"
+    "codemirror-blocks": "git+https://github.com/bootstrapworld/codemirror-blocks.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
