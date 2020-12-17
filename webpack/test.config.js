@@ -1,5 +1,4 @@
 var path = require("path");
-var _ = require('lodash');
 var baseConfig = require('./base.config.js')();
 var envConfig = require('../env-config.js');
 envConfig.mode = 'development';
@@ -18,7 +17,7 @@ if (envConfig.runCoverage) {
 }
 
 // this is the config for generating the files needed to run the examples.
-module.exports = _.extend({}, baseConfig, {
+module.exports = Object.assign({}, baseConfig, {
   resolve: {
     alias: {
       jsnums :  'wescheme-js/src/runtime/js-numbers',
@@ -30,7 +29,7 @@ module.exports = _.extend({}, baseConfig, {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   devtool: 'inline-source-map',
-  module: _.extend({}, baseConfig.module, {
+  module: Object.assign({}, baseConfig.module, {
     rules: rules
   }),
   mode: 'development'
