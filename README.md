@@ -4,7 +4,7 @@
 [comment][![Coverage Status](https://coveralls.io/repos/bootstrapworld/codemirror-blocks/badge.svg?branch=master&service=github)](https://coveralls.io/github/bootstrapworld/wescheme-blocks?branch=master)
 [![Code Climate](https://codeclimate.com/github/bootstrapworld/codemirror-blocks/badges/gpa.svg)](https://codeclimate.com/github/bootstrapworld/wescheme-blocks)
 
-# pyret-blocks
+# wescheme-blocks
 A screenreader-accessible, hybrid block and text editor for a subset of the [Racket programming language](https://www.racket-lang.org), which is used on [WeScheme.org](https://www.WeScheme.org/).
 
 ## Usage
