@@ -46,7 +46,7 @@ configs = configs.concat(
     });
   })
 );
-
+/*
 configs.push(
   Object.assign({}, baseConfig({extractCSS:true}), {
     entry: {
@@ -58,4 +58,5 @@ configs.push(
     },
   })
 );
+*/
 module.exports = configs;
