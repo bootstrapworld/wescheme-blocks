@@ -2,12 +2,21 @@ import WeschemeParser from './WeschemeParser';
 import { CodeMirrorBlocks, Languages }  from "codemirror-blocks";
 require('./style.less');
 
+let parser = new WeschemeParser();
+
 export const WeScheme = Languages.addLanguage({
   id: 'wescheme',
   name: 'WeScheme',
   description: 'The WeScheme language',
-  getParser() {
-    return new WeschemeParser();
+  parse: parser.parse,
+  getExceptionMessage: parser.getExceptionMessage,
+  getASTNodeForPrimitive: parser.getASTNodeForPrimitive,
+  getLiteralNodeForPrimitive: parser.getLiteralNodeForPrimitive,
+  primitives: [],
+  primitivesFn() {
+    let x = parser.primitivesFn();
+    this.primitives = x;
+    return x;
   },
   getRenderOptions() {
     return {
