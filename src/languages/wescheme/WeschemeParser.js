@@ -13,11 +13,10 @@ const {
   CondClause,
   Comment,
   VariableDefinition,
-  Sequence,
   FunctionApp,
   Unknown
 } = Nodes;
-import {LetLikeExpr, WhenUnless} from './ast';
+import {LetLikeExpr, WhenUnless, Sequence} from './ast';
 import PRIMITIVES_CONFIG from './primitives-config';
 import { lex } from 'lex';
 import {isString, isChar, isVector as isNativeVector, TRUE, FALSE} from 'types';

@@ -1,5 +1,12 @@
-import {React, AST, Pretty as P, Node, NodeSpec as Spec} from 'codemirror-blocks';
+import {React, AST, Pretty as P, Node, Nodes, NodeSpec as Spec} from 'codemirror-blocks';
 const {pluralize} = AST;
+
+/* Override the default pretty printer for Sequences,
+ * so that they print as s-expressions
+ */
+export class Sequence extends Nodes.Sequence {
+  pretty() { return P.standardSexpr(this.name, this.exprs); }
+}
 
 export class LetLikeExpr extends AST.ASTNode {
   constructor(from, to, form, bindings, expr, options={}) {
