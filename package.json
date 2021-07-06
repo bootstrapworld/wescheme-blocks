@@ -8,7 +8,7 @@
     "npm": ">=3.x"
   },
   "dependencies": {
-    "codemirror-blocks": "bootstrapworld/codemirror-blocks#57059b5a10f51d711767fa06fd601122bf5d747c"
+    "codemirror-blocks": "bootstrapworld/codemirror-blocks#efb40cff62ba8259d3e94df1e6ac75fe9378f79f"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.12.1",
