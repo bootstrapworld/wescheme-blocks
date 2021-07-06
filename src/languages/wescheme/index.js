@@ -29,5 +29,6 @@ export const WeScheme = Languages.addLanguage({
 const constructor = (container, options) => new CodeMirrorBlocks(container, options, WeScheme);
 export default constructor;
 
-module.exports = constructor;
-global.CodeMirrorBlocks = constructor;
+// TODO(pcardune): remove these as they should be handled in the webpack bundling config
+// module.exports = constructor;
+// global.CodeMirrorBlocks = constructor;
