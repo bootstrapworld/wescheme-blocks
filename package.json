@@ -8,7 +8,7 @@
     "npm": ">=3.x"
   },
   "dependencies": {
-    "codemirror-blocks": "git+https://github.com/bootstrapworld/codemirror-blocks.git"
+    "codemirror-blocks": "bootstrapworld/codemirror-blocks#a7dbc166aad66ebfeb7598103b25e9fd807533c7"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -69,12 +69,10 @@
     "test": "./node_modules/karma/bin/karma start --single-run",
     "test-watch": "karma start",
     "start": "webpack serve --mode development --config webpack/example.config.js",
-    "heroku-server": "node heroku-server.js",
     "build": "webpack --mode production",
     "build-debug": "webpack --mode development",
     "build-watch": "webpack --watch --mode development",
-    "lint": "eslint src spec --ext .js || true",
-    "site": "jekyll serve --baseurl \"\""
+    "lint": "eslint src spec --ext .js || true"
   },
   "author": "The Bootstrap Team",
   "contributors": [
