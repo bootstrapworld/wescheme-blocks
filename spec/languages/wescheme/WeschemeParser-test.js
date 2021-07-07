@@ -229,7 +229,7 @@ describe("The WeScheme Parser,", function() {
     });
 
     it("should get the correct name of the sequence", function() {
-      expect(this.ast.rootNodes[0].name).toBe('begin');
+      expect(this.ast.rootNodes[0].name.value).toBe('begin');
     });
 
     it("should convert the sequence's expressions correctly", function() {
