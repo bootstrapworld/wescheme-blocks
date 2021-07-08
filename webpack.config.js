@@ -5,7 +5,7 @@ const {
 } = require('codemirror-blocks/lib/toolkit/webpack');
 
 const devServerConfig = getWebpackDevServerConfig({
-  context: path.resolve('dev-server'),
+  context: path.resolve(__dirname, 'dev-server'),
   entry: './index.js',
 });
 const bundleConfig = getWebpackBundleConfig({
@@ -37,9 +37,17 @@ bundleConfig.externals = {
   'codemirror/addon/search/search' : 'codemirror',
   'codemirror/addon/search/searchcursor' : 'codemirror',
   'jsnums': 'jsnums',
-  'lex': 'plt.compiler',
+  'lex': {
+    commonjs: 'plt.compiler',
+    commonjs2: 'plt.compiler',
+    root: ['plt','compiler'],
+  },
   'types': 'types',
-  'structs': 'plt.compiler',
+  'structs': {
+    commonjs: 'plt.compiler',
+    commonjs2: 'plt.compiler',
+    root: ['plt','compiler'],
+  },
 };
 
 module.exports = [
