@@ -5,17 +5,17 @@
   "private": true,
   "main": "src/languages/wescheme/index.js",
   "engines": {
-    "node": ">=6.x",
-    "npm": ">=3.x"
+    "node": ">=10.x",
+    "npm": ">=7.x"
   },
   "dependencies": {
     "codemirror-blocks": "bootstrapworld/codemirror-blocks#2d3189018762b73d326ea0deece78930a2e96233"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
-    "@testing-library/react": "^11.2.7",
+    "@testing-library/react": "^12.0.0",
     "babel-eslint": "^10.1.0",
     "eslint-plugin-react": "^7.24.0",
     "webpack-cli": "^4.7.2"
