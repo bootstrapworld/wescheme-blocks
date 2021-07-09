@@ -1,5 +1,6 @@
-import WeSchemeCMB from '../src/languages/wescheme';
-import './example-page.less';
+import {createDebuggingInterface} from "codemirror-blocks/lib/toolkit/debug";
+
+import {WeScheme} from '../src/languages/wescheme';
 import bigExampleCode from './ast-test.rkt';
 
 // HACK: expose ALL test utilities, events, etc
@@ -12,9 +13,7 @@ const smallExampleCode = `(+ 1 2) ;comment\n(+ 3 4)`;
 const useBigCode = true;
 const exampleCode = useBigCode ? bigExampleCode : smallExampleCode;
 
-// grab the DOM Node to host the editor, and use it to instantiate
-const container = document.getElementById('cmb-editor');
-const editor = WeSchemeCMB(container, {collapseAll: false, value: exampleCode});
+const editor = createDebuggingInterface(WeScheme, exampleCode);
 
 // for debugging purposes
 window.editor = editor;
