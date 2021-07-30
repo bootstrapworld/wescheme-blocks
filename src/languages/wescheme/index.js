@@ -28,6 +28,3 @@ export const WeScheme = Languages.addLanguage({
 
 const constructor = (container, options) => new CodeMirrorBlocks(container, options, WeScheme);
 export default constructor;
-
-module.exports = constructor;
-global.CodeMirrorBlocks = constructor;

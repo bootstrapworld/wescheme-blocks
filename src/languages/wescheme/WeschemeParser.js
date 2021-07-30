@@ -20,7 +20,7 @@ import {LetLikeExpr, WhenUnless, Sequence} from './ast';
 import PRIMITIVES_CONFIG from './primitives-config';
 import { lex } from 'lex';
 import {isString, isChar, isVector as isNativeVector, TRUE, FALSE} from 'types';
-import * as structures from 'structs'
+import * as structures from 'structs';
 
 let symbolMap = new Map();
 symbolMap.set("*", "multiply");
@@ -351,10 +351,6 @@ class WeschemeParser {
       'symbol',
         {'aria-label': primitive.name}
     );
-  }
-
-  get primitives() {
-    return primitivesFn();
   }
 
   primitivesFn() {
