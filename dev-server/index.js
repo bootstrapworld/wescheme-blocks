@@ -5,7 +5,7 @@ import bigExampleCode from './ast-test.rkt';
 
 // HACK: expose ALL test utilities, events, etc
 // so they can be used from the browser console
-import * as t from '../spec/support/test-utils';
+import * as t from 'codemirror-blocks/lib/toolkit/test-utils';
 Object.assign(window, t);
 
 const smallExampleCode = `(+ 1 2) ;comment\n(+ 3 4)`;
